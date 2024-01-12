@@ -12,3 +12,21 @@ use ic_stable_structures::{BoundedStorable, Cell, DefaultMemoryImpl, StableBTree
 // std is the standard library of Rust
 use std::{borrow::Cow, cell::RefCell};
 
+//define the memory manager
+type Memory = VirtualMemory<DefaultMemoryImpl>;
+type IdCell = Cell<u64, Memory>; // Generate a cell with a u64 unique value 
+
+// define message struct
+#[derive(candid::CandidType, Clone, Deserialize, Serialize, Default)]
+struct Message {
+    id: u64,
+    title: String,
+    body: String,
+    attachment_url: String,
+    created_at: u64,
+    updated_at: Option<u64>,
+}
+
+
+
+
