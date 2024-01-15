@@ -5,5 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    ports:
+      - "4943:4943"  
     volumes:
       - .:/app

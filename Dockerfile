@@ -1,7 +1,11 @@
 FROM ubuntu:latest
 
 # Install curl and other dependencies
-RUN apt-get update && apt-get install -y curl build-essential
+RUN apt-get update && apt-get install -y \
+    curl \
+    build-essential \
+    software-properties-common \
+    libunwind8
 
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
@@ -17,8 +21,9 @@ RUN cargo install candid-extractor
 RUN sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
 # Install Node.js and npm
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - 
-RUN apt-get install -y nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get install -y npm
 
 # Set the working directory to /app
 WORKDIR /app
