@@ -118,7 +118,10 @@ fn update_message(id: u64, payload: MessagePayload) -> Result<Message, Error> {
             Ok(message)
         }
         None => Err(Error::NotFound {
-            msg: format!("a message with id={} not found", id),
+            msg: format!(
+                "a message with id={} not found", 
+                id
+            ),
         }),
     }
 }
@@ -127,6 +130,21 @@ fn do_insert(message: &Message) {
     STORAGE.with(|s| s.borrow_mut().insert(message.id, message.clone()));
 }
 
+// delete_message function
+#[ic_cdk::update]
+fn delete_message(id: u64) -> Result<Message, Error> {
+    match STORAGE.with(|service| service.borrow_mut().remove(&id)) {
+        Some(message) => Ok(message),
+        None => Err(Error::NotFound {
+            msg: format!(
+                "a message with id={} not found", 
+                id
+            ),
+        }),
+    }
+}
+
+// helper method to get message by id. used in get_message and update_message
 fn _get_message(id: &u64) -> Option<Message> {
     STORAGE.with(|s| s.borrow().get(id))
 }
