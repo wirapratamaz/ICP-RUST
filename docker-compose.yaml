@@ -6,6 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "4943:4943"  
+      - "4943:4943"
     volumes:
-      - .:/app
+      - myapp-data:/app
+    command: tail -f /dev/null
+
+volumes:
+  myapp-data: {}

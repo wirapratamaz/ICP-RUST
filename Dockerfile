@@ -21,9 +21,8 @@ RUN cargo install candid-extractor
 RUN sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
 # Install Node.js and npm
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
-    && apt-get install -y nodejs \
-    && apt-get install -y npm
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - 
+RUN apt-get install -y nodejs
 
 # Set the working directory to /app
 WORKDIR /app
