@@ -27,3 +27,6 @@ RUN apt-get install -y nodejs
 # Set the working directory to /app
 WORKDIR /app
 COPY . /app
+
+# Expose port 4943
+EXPOSE 4943
