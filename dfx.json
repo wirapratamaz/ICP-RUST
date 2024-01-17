@@ -7,5 +7,10 @@
       "candid": "src/icp_rust_boilerplate_backend/icp_rust_boilerplate_backend.did"
     }
   },
-  "output_env_file": ".env"
+  "output_env_file": ".env",
+  "networks": {
+    "local": {
+      "bind": "0.0.0.0:8000"
+    }
+  }
 }

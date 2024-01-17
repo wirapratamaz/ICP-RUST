@@ -28,5 +28,8 @@ RUN apt-get install -y nodejs
 WORKDIR /app
 COPY . /app
 
+# replica port
+RUN echo "export REPLICA_PORT=8000" >> ./.bashrc
+
 # Expose port 4943
 EXPOSE 4943
